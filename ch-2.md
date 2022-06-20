@@ -61,3 +61,44 @@ program that uses the data, **the client**, from the part that
 represents the compound data from its primitives. This separation
 allows us to change the client or the data representation without
 affecting the other.
+
+
+## Abstraction Barriers
+The idea behind data abstraction -> find the basic operations required
+to manipulate all data objects of a certain type then use only those
+operations to manipulate the data objects.  The client or the part of
+the program that uses the the data objects, therefore, does not depend
+on the data representation, they depend on the "basic operations"
+implemented as procedures.
+
+These procedures define an abstraction barrier and allow interaction
+between the parts of the program on either side of the "barrier" - the
+data representation and the client.
+
+
+   data representation
+
+--- constructors and selectors ---
+
+   client
+    
+
+In the rational number example [add link], the "data representation"
+is the representation of the rational number data type as a Lisp Pair
+(`cons`). The most basic operations required to manipulate a rational
+number at this level are the operations for its construction and
+selection of its numerator and denominator. These operations have been
+implemented by the `make-rat`, `numer` and `denom` procedures. These
+procedures form the abstraction barrier. The client, at this level, is
+the part of the program (abstraction layer) that uses rational numbers
+in terms of the constructor and selectors `make-rat`, `numer` and
+`denom`.
+
+   rational number data type as a Pair
+   
+--- `make-rat`, `numer` and `denom` ---
+
+   rational number as a numerator and denominator
+
+One can take this further to not just data, but also the procedures
+that manipulate the data.
