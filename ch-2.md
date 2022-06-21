@@ -90,15 +90,38 @@ number at this level are the operations for its construction and
 selection of its numerator and denominator. These operations have been
 implemented by the `make-rat`, `numer` and `denom` procedures. These
 procedures form the abstraction barrier. The client, at this level, is
-the part of the program (abstraction layer) that uses rational numbers
-in terms of the constructor and selectors `make-rat`, `numer` and
-`denom`.
+the part of the program (abstraction layer) that uses the rational
+number data type in terms of the constructor and selectors `make-rat`,
+`numer` and `denom`.
 
-   rational number data type as a Pair
+   rational number as a Pair
    
 --- `make-rat`, `numer` and `denom` ---
 
    rational number as a numerator and denominator
 
-One can take this further to not just data, but also the procedures
-that manipulate the data.
+We can add another abstraction barrier with the procedures `add-rat`,
+`sub-rat`, `mul-rat`, `div-rat` and `equal-rat?`
+
+   rational number as a Pair
+
+--- `make-rat`, `numer` and `denom` ---
+
+   rational number as a numerator and denominator
+   
+--- `add-rat`, `sub-rat`, `mul-rat`, ... ---
+
+   rational numbers in the problem domain
+
+
+Structuring a program like this makes it easier to maintain and
+modify. A compound data structure can be represented in many different
+ways each with a positive or negative impact on performance depending
+on how it is being used. Limiting the dependence of the client on the
+data structure to a few basic procedures makes it possible to change
+the representation without having to change the client or its client.
+
+The flexibility derived from this also allows us to defer decision
+about the data representation. (This is a principle in agile
+development - defer commitments to when you can make a confident
+data-based decision)
