@@ -83,16 +83,16 @@ data representation and the client.
    client
     
 
-In the rational number example [add link], the "data representation"
-is the representation of the rational number data type as a Lisp Pair
-(`cons`). The most basic operations required to manipulate a rational
-number at this level are the operations for its construction and
-selection of its numerator and denominator. These operations have been
-implemented by the `make-rat`, `numer` and `denom` procedures. These
-procedures form the abstraction barrier. The client, at this level, is
-the part of the program (abstraction layer) that uses the rational
-number data type in terms of the constructor and selectors `make-rat`,
-`numer` and `denom`.
+In the [rational number example](./example-2-1-1.scm), the "data
+representation" is the representation of the rational number data type
+as a Lisp Pair (`cons`). The most basic operations required to
+manipulate a rational number at this level are the operations for its
+construction and selection of its numerator and denominator. These
+operations have been implemented by the `make-rat`, `numer` and
+`denom` procedures. These procedures form the abstraction barrier. The
+client, at this level, is the part of the program (abstraction layer)
+that uses the rational number data type in terms of the constructor
+and selectors `make-rat`, `numer` and `denom`.
 
    rational number as a Pair
    
@@ -124,4 +124,4 @@ the representation without having to change the client or its client.
 The flexibility derived from this also allows us to defer decision
 about the data representation. (This is a principle in agile
 development - defer commitments to when you can make a confident
-data-based decision)
+data-backed decision)
