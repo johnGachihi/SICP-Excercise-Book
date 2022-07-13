@@ -59,17 +59,64 @@
 ;; Exercise 2.3
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; First implementation of rectangle
 ;; Rectangle as a pair of segments - the top
-;; horizontal and 
-(define (make-rect tl-point br-point)
-  (cons (make-segment ())))
+;; horizontal and the left vertical segments
+;; (define (make-rect top-left-point width height)
+;;   (cons
+;;    (make-segment top-left-point
+;;                  (make-point (+ width (x-point top-left-point))
+;;                              (y-point top-left-point)))
+;;    (make-segment top-left-point
+;;                  (make-point (x-point top-left-point)
+;;                              (+ height (y-point top-left-point))))))
 
-(define (width rect)
-  ())
+;; (define (top-line rect)
+;;   (car rect))
 
-(define (height rect))
+;; (define (left-line rect)
+;;   (cdr rect))
+
+;; (define (width rect)
+;;   (abs (- (x-point (start-segment (top-line rect)))
+;;           (x-point (end-segment (top-line rect))))))
+
+;; (define (height rect)
+;;   (abs (- (y-point (start-segment (left-line rect)))
+;;           (y-point (end-segment (left-line rect))))))
+
+;; ...other selectors
 
 
-(define (area rect))
+;; Alernative implementation of rectangle
+;; Rectangle as Pair(top-left-point, Pair(width, height))
+(define (make-rect top-left-point width height)
+  (cons top-left-point (cons width height)))
 
-(define (perimeter rect))
+(define (width rect) (car (cdr rect)))
+
+(define (height rect) (cdr (cdr rect)))
+
+;; ... other selectors
+
+;; -----------------------------------------------------------
+
+;; Rectangle as its width and height
+;;
+;; Separate abstraction layer from the constructor and
+;; selectors above. When the implementation for the above
+;; changes, this layer should not have to change as long
+;; as the interface (signatures for `width` and
+;; `height`) remain the same
+(define (area rect)
+  (* (width rect) (height rect)))
+
+(define (perimeter rect)
+  (+ (* 2 (width rect))
+     (* 2 (height rect))))
+
+
+;; Stuff (for testing)
+(define a-rect (make-rect (make-point 1 4) 3 3))
+
+(perimeter a-rect)
