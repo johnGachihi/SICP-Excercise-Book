@@ -9,6 +9,13 @@ Why do we want compound data? (Same reason we want compound procedures):
  manipulating rational numbers as two numbers (a numerator and
  denominator), you represent and manipulate them as just a rational
  number.
+ 
+ "Ideas thus made up of several simple ones put together, I call
+ complex; such as are beauty, gratitude, a man, an army, the universe;
+ **which though complicated of various simple ideas, or complex ideas
+ made up of simple ones, yet are, when the mind pleases, considered
+ each by itself as one entire thing, and signified by one name.**"
+ - John Locke, An Essay Concerning Human Understanding
 
 - **To increase modularity of our system**: The ability to manipulate
   a compound data object as a unit allows us to separate **the
@@ -49,12 +56,12 @@ it makes no assumptions about the data except what is strictly
 necessary for it to know to perform the task at hand.
 
 At the same time, the concrete data representation is defined
-independently from the part of the program that uses the data.
+independent of the part of the program that uses the data.
 
-Between these two parts is an interface--as set of procedures--called
+Between these two parts is an interface--a set of procedures--called
 **selectors** and **constructurs** (that implement the abstract data
 in terms of the concrete representation - thus allowing interaction
-between the two parts)
+between the two parts??)
 
 This forms an abstraction of the data that separates the part of the
 program that uses the data, **the client**, from the part that
@@ -66,7 +73,7 @@ affecting the other.
 ## Abstraction Barriers
 The idea behind data abstraction -> find the basic operations required
 to manipulate all data objects of a certain type then use only those
-operations to manipulate the data objects.  The client or the part of
+operations to manipulate the data objects. The client or the part of
 the program that uses the the data objects, therefore, does not depend
 on the data representation, they depend on the "basic operations"
 implemented as procedures.
@@ -119,9 +126,36 @@ modify. A compound data structure can be represented in many different
 ways each with a positive or negative impact on performance depending
 on how it is being used. Limiting the dependence of the client on the
 data structure to a few basic procedures makes it possible to change
-the representation without having to change the client or its client.
+the representation without having to change the client or the client's
+clients.
 
 The flexibility derived from this also allows us to defer decision
 about the data representation. (This is a principle in agile
 development - defer commitments to when you can make a confident
 data-backed decision)
+
+## What is Meant by Data?
+"In general, we can think of data as defined by **some collection of
+selectors and constructors**, together with **specified conditions**n
+that these procedures must fulfil in order to be valid
+represenations."
+
+For the rational number data object, the selectors and constructors
+are the procedures `numer`, `denom` and `make-rat`. The condition that
+these procedures must satisfy is:
+
+For a rational number, `x`, made from `(make-rat n d)`
+```
+(numer x)/(denom x) == n/d
+```
+
+The representation of a data object by its selectors and constructors
+can take any form, but as long as the selectors and constructors
+satisfy the **conditions**, then the representation is valid.
+
+(Thoughts: writing tests to verify that the selectors and constructors
+satifsy the data object's "condition" would guarantee that our
+representation is valid. We do not test the representation, thus our
+tests would pass when we change the representation as long as the
+"condition" is still satisfied.)
+
